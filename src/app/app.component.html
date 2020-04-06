@@ -1,0 +1,68 @@
+
+<div class="my-container">
+  <h1>Online Meeting Room Book</h1>
+  <div class="booking-form">
+    <h2>Book The Meeting Romm</h2>
+    <form #roomBookingForm="ngForm" (ngSubmit)="onSubmit(roomBookingForm.value)">
+      <div class="my-form-group">
+        <label>User Name</label>
+        <input type="text" class="my-form-control" name="userName" ngModel>
+      </div><!-- my-form-group -->
+      <div class="my-form-group">
+        <label>Meeting Room</label>
+        <select name="rooms" id="meeting-rooms" [ngModel]="selectedRoom.name + selectedRoom.availability" class="my-form-control">
+          <option
+            *ngFor="let room of rooms"
+            [value]=" room.name + room.availability"
+          >
+            {{room.name + " " + "(" + room.availability + ")"}}
+          </option>
+        </select>
+      </div><!-- my-form-group -->
+      <div class="my-form-group">
+        <label>Date</label>
+        <input type="date" class="my-form-control" name="date" ngModel>
+      </div><!-- my-form-group -->
+      <div class="my-form-group">
+        <label>Time</label>
+        <input type="time" min="09:00" max="18:00" class="my-form-control" name="time" ngModel>
+      </div><!-- my-form-group -->
+      <div class="my-form-group">
+        <label>Agenda</label>
+        <textarea class="my-form-control" name="agenda" ngModel></textarea>
+      </div><!-- my-form-group -->
+      <button type="submit" class="my-btn">Submit</button>
+    </form>
+  </div><!-- booking-form -->
+
+  <div class="booking-details">
+    <h2>Booking Details</h2>
+    <div class="booking-detail-data" *ngFor="let roomDetail of roomDetails; let i = index">
+      <div class="booking-detail-data-cell">
+        <h3>User Name</h3>
+        <p>{{roomDetail.userName}}</p>
+      </div><!-- booking-detail-data-cell -->
+      <div class="booking-detail-data-cell">
+        <h3>Meeting Room</h3>
+        <p>{{roomDetail.rooms}}</p>
+      </div><!-- booking-detail-data-cell -->
+      <div class="booking-detail-data-cell">
+        <h3>Date</h3>
+        <p>{{roomDetail.date}}</p>
+      </div><!-- booking-detail-data-cell -->
+      <div class="booking-detail-data-cell">
+        <h3>Time</h3>
+        <p>{{roomDetail.time}}</p>
+      </div><!-- booking-detail-data-cell -->
+      <div class="booking-detail-data-cell">
+        <h3>Agenda</h3>
+        <p>{{roomDetail.agenda}}</p>
+      </div><!-- booking-detail-data-cell -->
+      <div class="booking-detail-data-cell">
+        <button type="submit" class="my-btn" (click)="deleteBooking(i)">Delete</button>
+      </div>
+    </div><!-- booking-detail-data -->
+  </div><!-- booking-details -->
+
+
+</div><!-- my-container -->
